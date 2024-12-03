@@ -15,20 +15,6 @@ using namespace std;
 #define PART_2 true
 
 int main() {
-    {
-        string s = "ali ali 100";
-        istringstream ss (s);
-        int a;
-        string p1, p2;
-        if (ss >> p1 >> p2 >> a) {
-            cout << p1;
-        }
-        else {
-            cout << "not match";
-        }
-        cout << endl;
-    }
-
     ifstream file("../../input.txt", ios::in);
 
     uint64_t count = 0;
