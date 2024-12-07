@@ -35,6 +35,8 @@ bool check2(uint64_t res, vector<uint64_t>& nums, int index, uint64_t so_far) {
             return false;   
     }
 
+    if (so_far > res)
+        return false;
 
     auto concat_2_numbers = [&](){
         int n_digits = 1;
@@ -57,12 +59,10 @@ bool check2(uint64_t res, vector<uint64_t>& nums, int index, uint64_t so_far) {
         return res;
     };
     */
-    uint64_t concat = concat_2_numbers();
     
-    return check2(res, nums, index + 1, concat) ||
-            check2(res, nums, index + 1, so_far + nums[index]) ||
-            (so_far == 0 ? false : check2(res, nums, index + 1, so_far * nums[index]))
-            ;
+    return check2(res, nums, index + 1, so_far + nums[index]) ||
+        check2(res, nums, index + 1, so_far * nums[index]) ||
+        check2(res, nums, index + 1, concat_2_numbers());
 }
 
 pair<uint64_t, uint64_t> solve() {
@@ -95,7 +95,7 @@ pair<uint64_t, uint64_t> solve() {
         if (check(res, nums, 1, nums[0])) {
             count += res;
         }
-        if (check2(res, nums, 0, 0)) {
+        if (check2(res, nums, 1, nums[0])) {
             count2 += res;
         }
     }
