@@ -59,6 +59,20 @@ struct hash<Point> {
     }
 };
 
+struct DirectedPoint : public Point {
+    Direction dir;
+
+    void move() {
+        Point::move(dir);
+    }
+    void turn_right() {
+        dir = rotate_clockwise(dir);
+    }
+    void turn_left() {
+        dir = rotate_counter_clockwise(dir);
+    }
+};
+
 vector<string> get_input_all_lines(string file_name) {
     ifstream file("../../" + file_name);
     vector<string> lines;
