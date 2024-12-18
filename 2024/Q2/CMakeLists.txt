@@ -8,8 +8,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 
 add_executable(
 	${PROJECT_NAME}
-  	src/main.cpp
-	src/initial.cpp
+  	main.cpp
+	initial.cpp
 )
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)

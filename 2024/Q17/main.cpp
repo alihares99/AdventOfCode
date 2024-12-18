@@ -71,7 +71,7 @@ struct CPU {
 
 CPU get_input() {
     CPU cpu;
-    auto lines = get_input_all_lines("ehsan.txt");
+    auto lines = get_input_all_lines("input.txt");
     istringstream ss(lines[0]);
     ss.ignore(12);
     ss >> cpu.regA;
