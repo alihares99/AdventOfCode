@@ -15,6 +15,8 @@
 #include <forward_list>
 #include <chrono>
 #include <regex>
+#include <functional>
+#include <stack>
 
 using namespace std;
 
