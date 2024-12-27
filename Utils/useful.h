@@ -17,6 +17,7 @@
 #include <regex>
 #include <functional>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -58,6 +59,15 @@ struct hash<Point> {
     size_t operator()(const Point& p) const noexcept {
         std::size_t h1 = std::hash<int>{}(p.i);
         std::size_t h2 = std::hash<int>{}(p.j);
+        return h1 ^ (h2 << 1); // or use boost::hash_combine
+    }
+};
+
+template <class T1, class T2>
+struct hash<pair<T1, T2>> {
+    size_t operator()(const pair<T1, T2>& p) const noexcept {
+        std::size_t h1 = std::hash<T1>{}(p.first);
+        std::size_t h2 = std::hash<T2>{}(p.second);
         return h1 ^ (h2 << 1); // or use boost::hash_combine
     }
 };
