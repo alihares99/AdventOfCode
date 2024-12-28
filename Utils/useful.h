@@ -95,3 +95,21 @@ vector<string> get_input_all_lines(string file_name) {
     }
     return lines;
 }
+
+string join_strings(const vector<string>& strs, char seprator) {
+    int size = 0;
+    for (auto& str : strs) {
+        size += str.size() + 1;
+    }
+    string s;
+    s.reserve(size - 1);
+
+    bool write = false;
+    for (auto& str : strs) {
+        if (write)
+            s.push_back(seprator);
+        write = true;
+        s.append(str);
+    }
+    return s;
+}
