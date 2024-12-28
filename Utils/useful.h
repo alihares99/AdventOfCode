@@ -97,10 +97,12 @@ vector<string> get_input_all_lines(string file_name) {
 }
 
 string join_strings(const vector<string>& strs, char seprator) {
-    int size = 0;
+    size_t size = 0;
     for (auto& str : strs) {
         size += str.size() + 1;
     }
+    if (size == 0)
+        return "";
     string s;
     s.reserve(size - 1);
 
