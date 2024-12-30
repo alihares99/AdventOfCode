@@ -1,5 +1,9 @@
+#pragma once
+
 #include <iostream>
+#include <filesystem>
 #include <fstream>
+#include <memory>
 #include <cassert>
 #include <algorithm>
 #include <vector>
@@ -87,7 +91,7 @@ struct DirectedPoint : public Point {
 };
 
 vector<string> get_input_all_lines(string file_name) {
-    ifstream file("../../" + file_name);
+    ifstream file(file_name);
     vector<string> lines;
     string str;
     while(getline(file, str)) {
@@ -115,3 +119,17 @@ string join_strings(const vector<string>& strs, char seprator) {
     }
     return s;
 }
+
+int get_n_digits(auto n) {
+    int n_digits = 1;
+    while (n /= 10) {
+        n_digits++;
+    }
+    return n_digits;
+}
+
+struct Solution {
+    virtual string part1(const string& filename) = 0;
+    virtual string part2(const string& filename) = 0;
+    virtual ~Solution() {}
+};
