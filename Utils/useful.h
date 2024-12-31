@@ -6,12 +6,14 @@
 #include <memory>
 #include <cassert>
 #include <algorithm>
+#include <numeric>
 #include <vector>
 #include <array>
 #include <string>
 #include <string_view>
 #include <sstream>
 #include <set>
+#include <map>
 #include <cstdio>
 #include <optional>
 #include <unordered_map>
@@ -27,8 +29,14 @@ using namespace std;
 
 enum Direction : int {dir_up = 0, dir_right, dir_down, dir_left};
 
+enum DirectionFlag : int {dirflag_up = 1, dirflag_right = 2, dirflag_down = 4, dirflag_left = 8};
+
 Direction mirror(Direction dir) {
     return Direction((dir + 2) % 4);
+}
+
+DirectionFlag mirror(DirectionFlag dir) {
+    return DirectionFlag(0xF & (dir >> 2 | dir << 2));
 }
 
 Direction rotate_clockwise(Direction dir) {
@@ -132,4 +140,9 @@ struct Solution {
     virtual string part1(const string& filename) = 0;
     virtual string part2(const string& filename) = 0;
     virtual ~Solution() {}
+};
+
+struct SolutionPair {
+    virtual pair<string, string> solve(const string& filename) = 0;
+    virtual ~SolutionPair() {}
 };
