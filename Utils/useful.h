@@ -128,6 +128,20 @@ string join_strings(const vector<string>& strs, char seprator) {
     return s;
 }
 
+template<class T>
+auto repeat(const auto& v, int n, optional<T> separator = nullopt) {
+    remove_cvref_t<decltype(v)> res;
+    res.reserve(v.size() * n + (separator.has_value() ? n - 1 : 0));
+    bool first = true;
+    for (int i = 0; i < n; i++) {
+        if (!first && separator.has_value())
+            res.push_back(*separator);
+        first = false;
+        res.insert(res.end(), v.begin(), v.end());
+    }
+    return res;
+}
+
 int get_n_digits(auto n) {
     int n_digits = 1;
     while (n /= 10) {
