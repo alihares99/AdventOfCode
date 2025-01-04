@@ -13,8 +13,8 @@
 #include "day12.h"
 #include "day13.h"
 #include "day14.h"
-/*
 #include "day15.h"
+/*
 #include "day16.h"
 #include "day17.h"
 #include "day18.h"
@@ -45,8 +45,8 @@ unique_ptr<SolutionPair> get_solution(int day_number) {
 	case 12: p = new Day12; break;
 	case 13: p = new Day13; break;
 	case 14: p = new Day14; break;
-	/*
 	case 15: p = new Day15; break;
+	/*
 	case 16: p = new Day16; break;
 	case 17: p = new Day17; break;
 	case 18: p = new Day18; break;
@@ -66,8 +66,8 @@ unique_ptr<SolutionPair> get_solution(int day_number) {
 
 int main(int argc, const char *argv[]) {
     if (argc == 1) {
-		int i = 14;
-        //for (int i = 1; i <= 14; i++) 
+		int i = 15;
+        //for (int i = 1; i <= 15; i++) 
 		{
             string day = to_string(i);
             const char *argv_test[] = {"", day.c_str()};

@@ -108,20 +108,22 @@ vector<string> get_input_all_lines(string file_name) {
     return lines;
 }
 
-string join_strings(const vector<string>& strs, char seprator) {
+string join_strings(const vector<string>& strs, optional<char> seprator = nullopt) {
     size_t size = 0;
     for (auto& str : strs) {
-        size += str.size() + 1;
+        size += str.size();
     }
     if (size == 0)
         return "";
+    if (seprator.has_value())
+        size += strs.size() - 1;
     string s;
-    s.reserve(size - 1);
+    s.reserve(size);
 
     bool write = false;
     for (auto& str : strs) {
-        if (write)
-            s.push_back(seprator);
+        if (write && seprator.has_value())
+            s.push_back(*seprator);
         write = true;
         s.append(str);
     }
