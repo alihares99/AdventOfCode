@@ -25,6 +25,10 @@
 #include <stack>
 #include <queue>
 
+#include <boost/functional/hash.hpp>
+
+#include "binary_tree.h"
+
 using namespace std;
 
 enum Direction : int {dir_up = 0, dir_right, dir_down, dir_left};
@@ -69,18 +73,20 @@ struct Point {
 template <>
 struct hash<Point> {
     size_t operator()(const Point& p) const noexcept {
-        std::size_t h1 = std::hash<int>{}(p.i);
-        std::size_t h2 = std::hash<int>{}(p.j);
-        return h1 ^ (h2 << 1); // or use boost::hash_combine
+        size_t seed = 0;
+        boost::hash_combine(seed, p.i);
+        boost::hash_combine(seed, p.j);
+        return seed;
     }
 };
 
 template <class T1, class T2>
 struct hash<pair<T1, T2>> {
     size_t operator()(const pair<T1, T2>& p) const noexcept {
-        std::size_t h1 = std::hash<T1>{}(p.first);
-        std::size_t h2 = std::hash<T2>{}(p.second);
-        return h1 ^ (h2 << 1); // or use boost::hash_combine
+        size_t seed = 0;
+        boost::hash_combine(seed, p.first);
+        boost::hash_combine(seed, p.second);
+        return seed;
     }
 };
 
@@ -95,6 +101,17 @@ struct DirectedPoint : public Point {
     }
     void turn_left() {
         dir = rotate_counter_clockwise(dir);
+    }
+};
+
+template <>
+struct hash<DirectedPoint> {
+    size_t operator()(const DirectedPoint& p) const noexcept {
+        size_t seed = 0;
+        boost::hash_combine(seed, p.i);
+        boost::hash_combine(seed, p.j);
+        boost::hash_combine(seed, p.dir);
+        return seed;
     }
 };
 

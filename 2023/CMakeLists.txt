@@ -24,8 +24,8 @@ add_executable(
 	day13.h
 	day14.h
 	day15.h
-	#[[
 	day16.h
+	#[[
 	day17.h
 	day18.h
 	day19.h
@@ -41,6 +41,7 @@ add_executable(
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../Utils)
+target_include_directories(${PROJECT_NAME} PRIVATE C:/Boost/include/boost-1_82)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
