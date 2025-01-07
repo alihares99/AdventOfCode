@@ -57,17 +57,39 @@ struct Point {
     Point() : i(0), j(0) {}
     Point(int i, int j) : i(i), j(j) {}
 
-    void move(Direction dir) {
+    Point& move(Direction dir, int n = 1) {
         switch (dir)
         {
-        case dir_up: i--; break;
-        case dir_down: i++; break;
-        case dir_right: j++; break;
-        case dir_left: j--; break;
+        case dir_up: i -= n; break;
+        case dir_down: i += n; break;
+        case dir_right: j += n; break;
+        case dir_left: j -= n; break;
         }
+        return *this;
     }
 
     bool operator==(const Point& p) const = default;
+};
+
+struct DirectedPoint : public Point {
+    Direction dir;
+
+    DirectedPoint& move(int n = 1) {
+        Point::move(dir, n);
+        return *this;
+    }
+    DirectedPoint& turn_right() {
+        dir = rotate_clockwise(dir);
+        return *this;
+    }
+    DirectedPoint& turn_left() {
+        dir = rotate_counter_clockwise(dir);
+        return *this;
+    }
+    DirectedPoint& turn_around() {
+        dir = mirror(dir);
+        return *this;
+    }
 };
 
 template <>
@@ -80,30 +102,6 @@ struct hash<Point> {
     }
 };
 
-template <class T1, class T2>
-struct hash<pair<T1, T2>> {
-    size_t operator()(const pair<T1, T2>& p) const noexcept {
-        size_t seed = 0;
-        boost::hash_combine(seed, p.first);
-        boost::hash_combine(seed, p.second);
-        return seed;
-    }
-};
-
-struct DirectedPoint : public Point {
-    Direction dir;
-
-    void move() {
-        Point::move(dir);
-    }
-    void turn_right() {
-        dir = rotate_clockwise(dir);
-    }
-    void turn_left() {
-        dir = rotate_counter_clockwise(dir);
-    }
-};
-
 template <>
 struct hash<DirectedPoint> {
     size_t operator()(const DirectedPoint& p) const noexcept {
@@ -111,6 +109,16 @@ struct hash<DirectedPoint> {
         boost::hash_combine(seed, p.i);
         boost::hash_combine(seed, p.j);
         boost::hash_combine(seed, p.dir);
+        return seed;
+    }
+};
+
+template <class T1, class T2>
+struct hash<pair<T1, T2>> {
+    size_t operator()(const pair<T1, T2>& p) const noexcept {
+        size_t seed = 0;
+        boost::hash_combine(seed, p.first);
+        boost::hash_combine(seed, p.second);
         return seed;
     }
 };
@@ -159,6 +167,13 @@ auto repeat(const auto& v, int n, optional<T> separator = nullopt) {
         res.insert(res.end(), v.begin(), v.end());
     }
     return res;
+}
+
+template <class T, size_t N>
+array<T, N> make_array(const T &v) {
+    array<T,N> ret;
+    ret.fill(v);
+    return ret;
 }
 
 int get_n_digits(auto n) {
