@@ -68,6 +68,19 @@ struct Point {
         return *this;
     }
 
+    Point& move(DirectionFlag dir, int n = 1) {
+        switch (dir)
+        {
+        case dirflag_up: i -= n; break;
+        case dirflag_down: i += n; break;
+        case dirflag_right: j += n; break;
+        case dirflag_left: j -= n; break;
+        default:
+            assert(false);
+        }
+        return *this;
+    }
+
     bool operator==(const Point& p) const = default;
 };
 
