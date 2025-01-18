@@ -26,6 +26,7 @@
 #include <queue>
 
 #include <boost/functional/hash.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include "binary_tree.h"
 
