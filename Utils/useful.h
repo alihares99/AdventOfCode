@@ -147,6 +147,9 @@ vector<string> get_input_all_lines(string file_name) {
     return lines;
 }
 
+/**
+ * joins strings optionally separated by @param(separator)
+ */
 string join_strings(const vector<string>& strs, optional<char> seprator = nullopt) {
     size_t size = 0;
     for (auto& str : strs) {
@@ -169,6 +172,10 @@ string join_strings(const vector<string>& strs, optional<char> seprator = nullop
     return s;
 }
 
+/**
+ * repeats @param(v), @param(n) times - optionally separated by @param(separator)
+ * @returns a container same a @param(v) with the desired output
+ */
 template<class T>
 auto repeat(const auto& v, int n, optional<T> separator = nullopt) {
     remove_cvref_t<decltype(v)> res;
@@ -183,6 +190,9 @@ auto repeat(const auto& v, int n, optional<T> separator = nullopt) {
     return res;
 }
 
+/**
+ * creates a std::array with initialization to @param(v)
+ */
 template <class T, size_t N>
 array<T, N> make_array(const T &v) {
     array<T,N> ret;
@@ -196,6 +206,29 @@ int get_n_digits(auto n) {
         n_digits++;
     }
     return n_digits;
+}
+
+uint64_t lcm_with_remainder(const auto& divisors_begin, const auto& divisors_end,
+                            const auto& remainders_begin) {
+    auto it_d = divisors_begin;
+    auto it_r = remainders_begin;
+    uint64_t v = *it_r;
+    uint64_t lcm_so_far = *it_d;
+    ++it_r; ++it_d;
+    for (; it_d != divisors_end; ++it_d, ++it_r) {
+        while (v % *it_d != *it_r) {
+            v += lcm_so_far;
+        }
+        lcm_so_far = lcm(lcm_so_far, *it_d);
+    }
+    return v == 0 ? lcm_so_far : v;
+}
+
+/**
+ * returns the lowest number that has a @param(remainders) when devided by the @param(divisors)
+ */
+uint64_t lcm_with_remainder(const auto& divisors, const auto& remainders) {
+    return lcm_with_remainder(divisors.begin(), divisors.end(), remainders.begin());
 }
 
 struct Solution {

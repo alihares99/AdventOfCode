@@ -82,14 +82,13 @@ struct Day08 : public SolutionPair {
             }
         }
 
-        uint64_t lcm_so_far = 1;
-        uint64_t part2 = seqs[0].pos_z;
-        for (auto& seq : seqs) {
-            while (part2 % seq.cycle != seq.pos_z % seq.cycle) {
-                part2 += lcm_so_far;
-            }
-            lcm_so_far = lcm(lcm_so_far, seq.cycle);
+        vector<uint64_t> divisors;
+        vector<uint64_t> remainders;
+        for (auto& item : seqs) {
+            divisors.push_back(item.cycle);
+            remainders.push_back(item.pos_z % item.cycle);
         }
+        uint64_t part2 = lcm_with_remainder(divisors, remainders);
         part2 *= jump;
 
         return {to_string(part1), to_string(part2)};
