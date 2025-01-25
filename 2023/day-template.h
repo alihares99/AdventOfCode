@@ -3,8 +3,13 @@
 
 struct DayXX : public SolutionPair {
 
+    static inline constexpr bool debug = true;
+
     auto get_input(const string& filename) {
-        auto lines = get_input_all_lines(filename);
+        string f = filename;
+        if (debug)
+            f = "../../test.txt";
+        auto lines = get_input_all_lines(f);
         return lines;
     }
 

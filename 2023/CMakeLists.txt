@@ -29,8 +29,8 @@ add_executable(
 	day18.h
 	day19.h
 	day20.h
-	#[[
 	day21.h
+	#[[
 	day22.h
 	day23.h
 	day24.h
