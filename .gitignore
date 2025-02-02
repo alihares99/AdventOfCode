@@ -11,8 +11,9 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 **/input.txt
-**/test.txt
 **/input??.txt
+**/test.txt
+**/test?.txt
 **/test??.txt
 build/
 .vscode/

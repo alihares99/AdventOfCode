@@ -24,6 +24,7 @@
 #include <functional>
 #include <stack>
 #include <queue>
+#include <ranges>
 
 #include <boost/functional/hash.hpp>
 #include <boost/algorithm/string.hpp>
