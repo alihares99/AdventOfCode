@@ -209,6 +209,16 @@ int get_n_digits(auto n) {
     return n_digits;
 }
 
+vector<int> get_digits(auto n) {
+    int n_digits = get_n_digits(n);
+    auto out = vector<int>(n_digits);
+    for (int i = 0; i < n_digits; i++) {
+        out[i] = n % 10;
+        n /= 10;
+    }
+    return out;
+}
+
 uint64_t lcm_with_remainder(const auto& divisors_begin, const auto& divisors_end,
                             const auto& remainders_begin) {
     auto it_d = divisors_begin;

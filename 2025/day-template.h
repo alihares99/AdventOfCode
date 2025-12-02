@@ -8,7 +8,7 @@ struct DayXX : public SolutionPair {
     auto get_input(const string& filename) {
         string f = filename;
         if (debug)
-            f = "../../test.txt";
+            f = "../test.txt";
         auto lines = get_input_all_lines(f);
         return lines;
     }

@@ -10,8 +10,8 @@ add_executable(
 	${PROJECT_NAME}
   	main.cpp
 		day01.h
+		day02.h
 		#[[
-	day02.h
 	day03.h
 	day04.h
 	day05.h
@@ -41,7 +41,12 @@ add_executable(
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/../Utils)
-target_include_directories(${PROJECT_NAME} PRIVATE /opt/homebrew/include)
+
+if(APPLE)
+	target_include_directories(${PROJECT_NAME} PRIVATE /opt/homebrew/include)
+elseif(WIN32)
+	target_include_directories(${PROJECT_NAME} PRIVATE C:/Boost/include/boost-1_82)
+endif()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
