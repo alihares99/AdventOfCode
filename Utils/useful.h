@@ -108,7 +108,7 @@ struct DirectedPoint : public Point {
 };
 
 template <>
-struct hash<Point> {
+struct std::hash<Point> {
     size_t operator()(const Point& p) const noexcept {
         size_t seed = 0;
         boost::hash_combine(seed, p.i);
@@ -118,7 +118,7 @@ struct hash<Point> {
 };
 
 template <>
-struct hash<DirectedPoint> {
+struct std::hash<DirectedPoint> {
     size_t operator()(const DirectedPoint& p) const noexcept {
         size_t seed = 0;
         boost::hash_combine(seed, p.i);
