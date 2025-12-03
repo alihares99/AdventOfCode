@@ -1,8 +1,8 @@
 #include "useful.h"
 #include "day01.h"
 #include "day02.h"
-/*
 #include "day03.h"
+/*
 #include "day04.h"
 #include "day05.h"
 #include "day06.h"
@@ -21,8 +21,8 @@ unique_ptr<SolutionPair> get_solution(int day_number)
     {
     case 1: p = new Day01;break;
     case 2: p = new Day02; break;
-        /*
     case 3: p = new Day03; break;
+    /*
     case 4: p = new Day04; break;
     case 5: p = new Day05; break;
     case 6: p = new Day06; break;
@@ -43,7 +43,7 @@ int main(int argc, const char *argv[])
 {
     if (argc == 1)
     {
-        int i = 2;
+        int i = 3;
         // for (int i = 1; i <= 22; i++)
         {
             string day = to_string(i);
