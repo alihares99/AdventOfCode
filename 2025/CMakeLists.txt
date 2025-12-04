@@ -11,9 +11,9 @@ add_executable(
   	main.cpp
 		day01.h
 		day02.h
+		day03.h
+		day04.h
 		#[[
-	day03.h
-	day04.h
 	day05.h
 	day06.h
 	day07.h
