@@ -55,11 +55,11 @@ struct Day06 : public SolutionPair
                 col_nums.push_back(v);
             }
             else {
-                nums2.push_back(move(col_nums));
+                nums2.push_back(std::move(col_nums));
                 col_nums = vector<int>();
             }
         }
-        nums2.push_back(move(col_nums));
+        nums2.push_back(std::move(col_nums));
         return make_tuple(nums, ops, nums2);
     }
 
