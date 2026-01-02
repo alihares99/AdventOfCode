@@ -76,6 +76,7 @@ int main(int argc, const char *argv[])
     if (!filesystem::exists(input_file))
     {
         cout << "input file not found. expected file: " << input_file << endl;
+        cout << "cwd: " << filesystem::current_path() << endl;
         return 1;
     }
 
