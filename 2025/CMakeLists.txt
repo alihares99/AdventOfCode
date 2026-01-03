@@ -14,11 +14,11 @@ add_executable(
 		day03.h
 		day04.h
 		day05.h
+		day06.h
+		day07.h
+		day08.h
+		day09.h
 		#[[
-	day06.h
-	day07.h
-	day08.h
-	day09.h
 	day10.h
 	day11.h
 	day12.h
